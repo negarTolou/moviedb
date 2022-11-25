@@ -94,6 +94,9 @@
 		CE4AB5612930A1A700F863F7 /* Moviedb */ = {
 			isa = PBXGroup;
 			children = (
+				CE4AB58E2930A35C00F863F7 /* Model */,
+				CE4AB58D2930A35200F863F7 /* ViewModel */,
+				CE4AB58C2930A34A00F863F7 /* View */,
 				CE4AB5622930A1A700F863F7 /* MoviedbApp.swift */,
 				CE4AB5642930A1A700F863F7 /* ContentView.swift */,
 				CE4AB5662930A1A900F863F7 /* Assets.xcassets */,
@@ -125,6 +128,27 @@
 				CE4AB57F2930A1A900F863F7 /* MoviedbUITestsLaunchTests.swift */,
 			);
 			path = MoviedbUITests;
+			sourceTree = "<group>";
+		};
+		CE4AB58C2930A34A00F863F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE4AB58D2930A35200F863F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE4AB58E2930A35C00F863F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
