@@ -5,8 +5,6 @@
 //  Created by Negar Tolou on 25.11.22.
 //
 
-import Foundation
-import SwiftUI
 
 // MARK: - Welcome
 struct PopularMovieResponseModel: Codable {

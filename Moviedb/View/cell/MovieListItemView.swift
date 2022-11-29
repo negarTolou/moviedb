@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-import SwiftUI
-
 struct MovieListItemView: View {
     let movie: MovieModel
     
