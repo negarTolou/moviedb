@@ -9,32 +9,24 @@ import SwiftUI
 import Foundation
 
 struct MoviesListView: View {
-    
-    @State private var movies : [MovieModel]?
+    @State private var movies: [MovieModel]?
     @StateObject var viewModel = MovieListViewModel()
-    
-    var body: some View  {
-        
-        //MARK: - BODY
-        NavigationView{
+    var body: some View {
+        // MARK: - BODY
+        NavigationView {
             List {
                 if movies != nil {
                     ForEach(movies!) { movie in
     //                    NavigationLink(destination: MovieDetailView(movie: movie)){
-                        
                         MovieListItemView(movie: movie)
     //                    } //: NavigationLink
                     } //: loop
                 }
-
-                
             } //: List
             .navigationBarTitle("Movie List", displayMode: .large)
         }.onAppear(perform: loadData) //: Navigation
     }
-        
-    
-    func loadData(){
+        func loadData() {
         Task {
             movies = await viewModel.getPopularMovies()
         }
@@ -46,4 +38,3 @@ struct MoviesListView_Previews: PreviewProvider {
         MoviesListView()
     }
 }
-
