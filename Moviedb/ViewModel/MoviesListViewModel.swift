@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieListViewModel: ObservableObject {
+final class MovieListViewModel: ObservableObject {
     
     @Published var movies: [MovieModel]?
     

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class UrlImageViewModel: ObservableObject {
+final class UrlImageViewModel: ObservableObject {
     
     @Published var image: UIImage?
     var urlString: String?
