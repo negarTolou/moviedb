@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-class ImageCache {
-    var cache = NSCache<NSString, UIImage>()
+final class ImageCache {
+   private var cache = NSCache<NSString, UIImage>()
     
     func get(forKey: String) -> UIImage? {
         return cache.object(forKey: NSString(string: forKey))
