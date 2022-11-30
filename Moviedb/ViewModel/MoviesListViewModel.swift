@@ -14,16 +14,19 @@ final class MovieListViewModel: ObservableObject {
         self.service = service
     }
     
-    @Published var movies: [MovieModel]?
-    func getMovieList() async -> [MovieModel] {
+    @Published var movies: [MovieListItemViewModel]?
+    func getMovieList() async -> [MovieListItemViewModel] {
         do {
             let result = try? await service?.fetch(api: MovieListAPI())
             if let data = result {
-                return data.results ?? []
+                return (data.results ?? []).map {
+                    MovieListItemViewModel(movie: $0)
+                }
             }
         } catch let error {
             print(error)
         }
+        
         return []
     }
 }
