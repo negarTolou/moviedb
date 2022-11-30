@@ -12,11 +12,11 @@ protocol Parsable {
 
 struct JSONParser: Parsable {
     let decoder: JSONDecoder
-
+    
     init(decoder: JSONDecoder) {
         self.decoder = decoder
     }
-
+    
     func parse<T: Decodable>(data: Data) throws -> T {
         return try decoder.decode(T.self, from: data)
     }

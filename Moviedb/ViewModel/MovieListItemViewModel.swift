@@ -8,7 +8,7 @@
 import Foundation
 final class MovieListItemViewModel: ObservableObject, Identifiable {
     @Published var movie: MovieModel?
-
+    
     var id: Int?
     let urlImage: String
     let title: String

@@ -14,11 +14,12 @@ enum ServiceError: Error {
 struct MovieListService {
     let session: Sessionable
     let parser: Parsable
+    
     func fetch(api: MovieListAPI) async throws -> PopularMovieResponseModel {
         let response = try await session.request(builder: URLBuilder(api: api))
+        
         if let httpResponse = response.1 as? HTTPURLResponse, api.acceptableStatusCodes.contains(httpResponse.statusCode) {
             return try parser.parse(data: response.0)
-            // Do parsing
         }
         throw ServiceError.invalideResponse
     }

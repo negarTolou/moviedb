@@ -8,13 +8,13 @@
 import Foundation
 
 final class MovieListViewModel: ObservableObject {
-    let service: MovieListService?
+    
+    private let service: MovieListService?
     
     init(service: MovieListService) {
         self.service = service
     }
     
-    @Published var movies: [MovieListItemViewModel]?
     func getMovieList() async -> [MovieListItemViewModel] {
         do {
             let result = try? await service?.fetch(api: MovieListAPI())

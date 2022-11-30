@@ -18,18 +18,18 @@ struct MoviesListView: View {
             List {
                 if movies != nil {
                     ForEach(movies!) { movie in
-    //                    NavigationLink(destination: MovieDetailView(movie: movie)){
+                        //                    NavigationLink(destination: MovieDetailView(movie: movie)){
                         MovieListItemView(movie: movie)
-    //                    } //: NavigationLink
+                        //                    } //: NavigationLink
                     } //: loop
                 }
             } //: List
             .navigationBarTitle("Movie List", displayMode: .large)
         }.onAppear(perform: loadData) //: Navigation
     }
-        func loadData() {
+    private func loadData() {
         Task {
-             movies = await viewModel.getMovieList()
+            movies = await viewModel.getMovieList()
         }
     }
 }

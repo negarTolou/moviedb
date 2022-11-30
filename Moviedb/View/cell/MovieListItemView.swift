@@ -11,13 +11,16 @@ struct MovieListItemView: View {
     let movie: MovieListItemViewModel
     // MARK: - Body
     var body: some View {
+        
         VStack(alignment: .center, spacing: 16) {
+            
             UrlImageView(urlString: movie.urlImage)
-
+            
             VStack(alignment: .leading, spacing: 8) {
                 Text(movie.title)
                     .font(.title3)
                     .fontWeight(.heavy)
+                
                 HStack(alignment: .center, spacing: 4) {
                     
                     Text(movie.reviewCount)
@@ -28,6 +31,7 @@ struct MovieListItemView: View {
                         .padding(.trailing, 8)
                         .foregroundColor(.green)
                 }
+                
                 Text(movie.subTitle)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
@@ -36,7 +40,7 @@ struct MovieListItemView: View {
                 
                 HStack(alignment: .center, spacing: 4) {
                     
-                   Text(movie.releaseDate)
+                    Text(movie.releaseDate)
                         .font(.footnote)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
