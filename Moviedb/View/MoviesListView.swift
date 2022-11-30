@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct MoviesListView: View {
-    @State private var movies: [MovieModel]?
+    @State private var movies: [MovieListItemViewModel]?
     @StateObject var viewModel = MovieListViewModel(service: MovieListService(session: NetworkSession(), parser: JSONParser(decoder: JSONDecoder())))
     
     var body: some View {
