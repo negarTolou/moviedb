@@ -12,7 +12,6 @@ final class UrlImageViewModel: ObservableObject {
     
     private var urlString: String?
     private var imageCache: ImageCache? = ImageCache()
-    //    private var imageCache = ImageCache.getImageCache()
     
     init(urlString: String?) {
         self.urlString = urlString
@@ -52,6 +51,3 @@ final class UrlImageViewModel: ObservableObject {
         return loadedImage
     }
 }
-
-
-
