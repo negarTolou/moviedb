@@ -10,7 +10,8 @@ import Foundation
 
 struct MoviesListView: View {
     @State private var movies: [MovieModel]?
-    @StateObject var viewModel = MovieListViewModel()
+    @StateObject var viewModel = MovieListViewModel(service: MovieListService(session: NetworkSession(), parser: JSONParser(decoder: JSONDecoder())))
+    
     var body: some View {
         // MARK: - BODY
         NavigationView {
@@ -28,7 +29,7 @@ struct MoviesListView: View {
     }
         func loadData() {
         Task {
-            movies = await viewModel.getPopularMovies()
+             movies = await viewModel.getMovieList()
         }
     }
 }
