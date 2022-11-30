@@ -9,46 +9,34 @@ import Foundation
 import SwiftUI
 
 final class UrlImageViewModel: ObservableObject {
-    @Published var image: UIImage?
     var urlString: String?
     var imageCache = ImageCache.getImageCache()
     init(urlString: String?) {
         self.urlString = urlString
-        loadImage()
     }
-    func loadImage() {
-        if loadImageFromCache() {
-            return
+    func getImage() async throws -> UIImage {
+        guard let urlString = urlString else {throw UrlError.invalidURL}
+        let cacheImage = imageCache.get(forKey: urlString)
+        if cacheImage == nil {
+            return try await loadImageFromUrl()
+        } else {
+            return cacheImage!
         }
-        loadImageFromUrl()
     }
-    func loadImageFromCache() -> Bool {
-        guard let urlString = urlString else {
-            return false
-        }
-        guard let cacheImage = imageCache.get(forKey: urlString) else {
-            return false
-        }
-        image = cacheImage
-        return true
-    }
-    func loadImageFromUrl() {
-        guard let urlString = urlString else {
-            return
-        }
+    func loadImageFromUrl() async throws -> UIImage {
+        guard let urlString = urlString else {throw UrlError.invalidURL}
         let url = URL(string: urlString)!
-        let task = URLSession.shared.dataTask(with: url, completionHandler: getImageFromResponse(data:response:error:))
-        task.resume()
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try await getImageFromResponse(data: data)
     }
-    func getImageFromResponse(data: Data?, response: URLResponse?, error: Error?) {
-        guard error == nil else {return}
-        guard let data = data else {return}
-        DispatchQueue.main.async {
+    func getImageFromResponse(data: Data?) async throws -> UIImage {
+        guard let data = data else {throw UrlError.invalidURL}
             guard let loadedImage = UIImage(data: data) else {
-                return
+                throw UrlError.invalidURL
             }
-            self.imageCache.set(forKey: self.urlString!, image: loadedImage)
-            self.image = loadedImage
-        }
+            guard let url = self.urlString else {throw UrlError.invalidURL}
+            self.imageCache.set(forKey: url, image: loadedImage)
+            return loadedImage
     }
 }
