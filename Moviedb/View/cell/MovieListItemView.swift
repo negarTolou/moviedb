@@ -8,25 +8,19 @@
 import SwiftUI
 
 struct MovieListItemView: View {
-    let movie: MovieModel
+    let movie: MovieListItemViewModel
     // MARK: - Body
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
-            let urlImage = "https://image.tmdb.org/t/p/w500/" + (movie.posterPath ?? "")
-            UrlImageView(urlString: urlImage)
+            UrlImageView(urlString: movie.urlImage)
+
             VStack(alignment: .leading, spacing: 8) {
-                Text(movie.title ?? "")
+                Text(movie.title)
                     .font(.title3)
                     .fontWeight(.heavy)
                 HStack(alignment: .center, spacing: 4) {
-                    Text("IMDB Rate:")
-                        .font(.callout)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(2)
-                        .padding(.trailing, 8)
-                        .foregroundColor(.green)
-                    Text(String(movie.voteAverage ?? 0.0))
+                    
+                    Text(movie.reviewCount)
                         .font(.callout)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
@@ -34,19 +28,15 @@ struct MovieListItemView: View {
                         .padding(.trailing, 8)
                         .foregroundColor(.green)
                 }
-                Text(movie.overview ?? "")
+                Text(movie.subTitle)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                     .padding(.trailing, 8)
+                
                 HStack(alignment: .center, spacing: 4) {
-                    Text("Releas Date:")
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(2)
-                        .padding(.trailing, 8)
-                   Text(movie.releaseDate ?? "")
+                    
+                   Text(movie.releaseDate)
                         .font(.footnote)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
@@ -62,7 +52,9 @@ struct MovieListItemView_Previews: PreviewProvider {
     static let response: PopularMovieResponseModel = Bundle.main.decode("movies.json")
     static let movies = response.results
     static var previews: some View {
-        MovieListItemView(movie: (movies?[0])!)
+        let model = MovieListItemViewModel(movie: (movies?[0]))
+        
+        MovieListItemView(movie: model)
             .previewLayout(.sizeThatFits)
             .padding()
     }
