@@ -43,3 +43,4 @@ struct UrlImageView_Previews: PreviewProvider {
         UrlImageView(urlString: nil)
     }
 }
+
