@@ -20,9 +20,3 @@ final class ImageCache {
     }
 }
 
-extension ImageCache {
-    private static var imageCache = ImageCache()
-    static func getImageCache() -> ImageCache {
-        return imageCache
-    }
-}

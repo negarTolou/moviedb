@@ -11,7 +11,8 @@ import SwiftUI
 final class UrlImageViewModel: ObservableObject {
     
     private var urlString: String?
-    private var imageCache = ImageCache.getImageCache()
+    private var imageCache: ImageCache? = ImageCache()
+    //    private var imageCache = ImageCache.getImageCache()
     
     init(urlString: String?) {
         self.urlString = urlString
@@ -21,7 +22,7 @@ final class UrlImageViewModel: ObservableObject {
         
         guard let urlString = urlString else {throw UrlError.invalidURL}
         
-        let cacheImage = imageCache.get(forKey: urlString)
+        let cacheImage = imageCache?.get(forKey: urlString)
         
         if cacheImage == nil {
             return try await loadImageFromUrl()
@@ -46,8 +47,11 @@ final class UrlImageViewModel: ObservableObject {
         guard let loadedImage = UIImage(data: data) else { throw UrlError.invalidURL }
         guard let url = self.urlString else { throw UrlError.invalidURL }
         
-        self.imageCache.set(forKey: url, image: loadedImage)
+        self.imageCache?.set(forKey: url, image: loadedImage)
         
         return loadedImage
     }
 }
+
+
+
