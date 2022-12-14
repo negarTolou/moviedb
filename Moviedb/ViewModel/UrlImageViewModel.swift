@@ -26,12 +26,14 @@ import SwiftUI
         
         let cacheImage = imageCache?.get(forKey: urlString)
         
-        if cacheImage == nil {
-            return try await loadImageFromUrl()
-            
+        if let cacheImage = cacheImage {
+            return cacheImage
         } else {
-            return cacheImage!
+            return try await loadImageFromUrl()
         }
+        
+        
+        
     }
     
     private func loadImageFromUrl() async throws -> UIImage {
