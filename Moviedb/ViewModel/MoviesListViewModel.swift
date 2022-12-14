@@ -15,7 +15,7 @@ final class MovieListViewModel: ObservableObject {
         self.service = service
     }
     
-    func getMovieList() async -> [MovieListItemViewModel] {
+    func getMovieList() async throws -> [MovieListItemViewModel] {
         do {
             let result = try? await service?.fetch(api: MovieListAPI())
             if let data = result {
@@ -24,7 +24,7 @@ final class MovieListViewModel: ObservableObject {
                 }
             }
         } catch let error {
-            print(error)
+            throw error
         }
         
         return []

@@ -29,7 +29,7 @@ struct MoviesListView: View {
     }
     private func loadData() {
         Task {
-            movies = await viewModel.getMovieList()
+            movies = try await viewModel.getMovieList()
         }
     }
 }
