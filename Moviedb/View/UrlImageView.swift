@@ -11,30 +11,20 @@ import SwiftUI
 struct UrlImageView: View {
     @ObservedObject var urlImageVM: UrlImageViewModel
     
-    @State private var image: UIImage!
-    private var defaultImage = UIImage(named: "logo")
-    
     init(urlString: String?) {
         urlImageVM = UrlImageViewModel(urlString: urlString)
     }
     
     var body: some View {
-        Image(uiImage: image ?? defaultImage!)
+        Image(uiImage: urlImageVM.image)
             .resizable()
             .scaledToFit()
             .frame(width: 300, height: 300)
             .onAppear {
-                loadImage()
+                DispatchQueue.main.async {
+                    urlImageVM.loadImage()
+                }
             }
-    }
-    
-    private func loadImage() {
-        Task {
-            let asyncImage = try? await urlImageVM.getImage()
-            DispatchQueue.main.async {
-                image = asyncImage
-            }
-        }
     }
 }
 

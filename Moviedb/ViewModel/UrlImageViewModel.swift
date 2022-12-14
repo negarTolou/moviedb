@@ -8,13 +8,16 @@
 import Foundation
 import SwiftUI
 
-final class UrlImageViewModel: ObservableObject {
+@MainActor class UrlImageViewModel: ObservableObject {
     
     private var urlString: String?
     private var imageCache: ImageCache? = ImageCache()
+    @Published var image: UIImage!
+    var defaultImage = UIImage(named: "logo")
     
     init(urlString: String?) {
         self.urlString = urlString
+        self.image = defaultImage
     }
     
     func getImage() async throws -> UIImage {
@@ -50,4 +53,12 @@ final class UrlImageViewModel: ObservableObject {
         
         return loadedImage
     }
+    
+    func loadImage() {
+        Task {
+            let asyncImage = try? await getImage()
+            image = asyncImage
+        }
+    }
 }
+
