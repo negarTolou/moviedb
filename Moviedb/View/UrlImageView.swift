@@ -10,27 +10,32 @@ import SwiftUI
 
 struct UrlImageView: View {
     @ObservedObject var urlImageVM: UrlImageViewModel
-    
-    init(urlString: String?) {
+    var width: Double
+    var height: Double
+
+    init(urlString: String?, imgWidth: Double, imgHeight: Double) {
         urlImageVM = UrlImageViewModel(urlString: urlString)
+        self.width = imgWidth
+        self.height = imgHeight
     }
     
     var body: some View {
-        Image(uiImage: urlImageVM.image)
+        Image(uiImage: (urlImageVM.image))
             .resizable()
             .scaledToFit()
-            .frame(width: 300, height: 300)
+            .frame(width: width, height: height)
             .onAppear {
-                DispatchQueue.main.async {
-                    urlImageVM.loadImage()
+                Task {
+                    try? await urlImageVM.loadImage()
                 }
             }
     }
+
 }
 
 struct UrlImageView_Previews: PreviewProvider {
     static var previews: some View {
-        UrlImageView(urlString: nil)
+        UrlImageView(urlString: nil, imgWidth: 300, imgHeight: 300)
     }
 }
 
