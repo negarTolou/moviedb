@@ -24,9 +24,14 @@ struct URLBuilder {
         
         guard var url = URL(string: api.baseURL) else {throw UrlError.invalidURL}
         url.append(path: api.path)
-        
+
+        if let id = api.id {
+            url.append(path: id)
+        }
+
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {throw UrlError.invalidComponents}
-        
+
+
         components.queryItems = api.queries.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
         
         guard let urlComponents = components.url else {throw UrlError.invalidURL}
@@ -37,3 +42,4 @@ struct URLBuilder {
         return request
     }
 }
+
