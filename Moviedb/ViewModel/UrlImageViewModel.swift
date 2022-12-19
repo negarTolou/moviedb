@@ -12,12 +12,12 @@ import SwiftUI
     
     private var urlString: String?
     private var imageCache: ImageCache? = ImageCache()
-    @Published var image: UIImage!
+    @Published var image: UIImage
     var defaultImage = UIImage(named: "logo")
     
     init(urlString: String?) {
         self.urlString = urlString
-        self.image = defaultImage
+        self.image = defaultImage!
     }
     
     func getImage() async throws -> UIImage {
@@ -29,11 +29,9 @@ import SwiftUI
         if let cacheImage = cacheImage {
             return cacheImage
         } else {
+
             return try await loadImageFromUrl()
         }
-        
-        
-        
     }
     
     private func loadImageFromUrl() async throws -> UIImage {
@@ -52,15 +50,15 @@ import SwiftUI
         guard let url = self.urlString else { throw UrlError.invalidURL }
         
         self.imageCache?.set(forKey: url, image: loadedImage)
-        
         return loadedImage
     }
     
-    func loadImage() {
-        Task {
-            let asyncImage = try? await getImage()
+    func loadImage() async throws {
+
+            guard let asyncImage = try? await getImage() else {
+                throw UrlError.invalidData
+            }
             image = asyncImage
-        }
     }
 }
 

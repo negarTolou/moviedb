@@ -34,6 +34,7 @@
 		CEA531EC2936365E00DAC840 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA531EB2936365E00DAC840 /* URLBuilder.swift */; };
 		CEA531EE2936382100DAC840 /* MoviesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA531ED2936382100DAC840 /* MoviesServices.swift */; };
 		CEA531F02936385E00DAC840 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA531EF2936385E00DAC840 /* JSONParser.swift */; };
+		CEDA2393294AF2B20055ED74 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA2392294AF2B20055ED74 /* MovieDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		CEA531EB2936365E00DAC840 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		CEA531ED2936382100DAC840 /* MoviesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesServices.swift; sourceTree = "<group>"; };
 		CEA531EF2936385E00DAC840 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		CEDA2392294AF2B20055ED74 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,10 +179,10 @@
 		CE4AB58C2930A34A00F863F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CE4AB5912930A3D500F863F7 /* cell */,
 				CE4AB5622930A1A700F863F7 /* MoviedbApp.swift */,
-				CE4AB5922930A3EB00F863F7 /* MovieDetailView.swift */,
 				CE4AB5942930A40700F863F7 /* MoviesListView.swift */,
+				CE4AB5912930A3D500F863F7 /* cell */,
+				CE4AB5922930A3EB00F863F7 /* MovieDetailView.swift */,
 				CE4AB5A72930A81900F863F7 /* UrlImageView.swift */,
 			);
 			path = View;
@@ -192,6 +194,7 @@
 				CE4AB5982930A43B00F863F7 /* MoviesListViewModel.swift */,
 				CE4AB5A92930A87B00F863F7 /* UrlImageViewModel.swift */,
 				CE32581A2936A1A20052A646 /* MovieListItemViewModel.swift */,
+				CEDA2392294AF2B20055ED74 /* MovieDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -431,7 +434,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -445,6 +449,7 @@
 				CE4AB5AA2930A87B00F863F7 /* UrlImageViewModel.swift in Sources */,
 				CEA531F02936385E00DAC840 /* JSONParser.swift in Sources */,
 				CEA531E62936353B00DAC840 /* APIRequest.swift in Sources */,
+				CEDA2393294AF2B20055ED74 /* MovieDetailViewModel.swift in Sources */,
 				CE4AB5A22930A79A00F863F7 /* BundleExtension.swift in Sources */,
 				CE4AB5952930A40700F863F7 /* MoviesListView.swift in Sources */,
 				CEA531EC2936365E00DAC840 /* URLBuilder.swift in Sources */,
