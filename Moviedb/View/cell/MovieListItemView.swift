@@ -11,44 +11,44 @@ struct MovieListItemView: View {
     let movie: MovieListItemViewModel
     // MARK: - Body
     var body: some View {
-        
-        VStack(alignment: .center, spacing: 16) {
-            
-            UrlImageView(urlString: movie.urlImage, imgWidth: 300, imgHeight: 300)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(movie.title)
-                    .font(.title3)
-                    .fontWeight(.heavy)
-                
-                HStack(alignment: .center, spacing: 4) {
-                    
-                    Text(movie.reviewCount)
-                        .font(.callout)
-                        .fontWeight(.bold)
+
+            VStack(alignment: .center, spacing: 16) {
+
+                UrlImageView(urlString: movie.urlImage, imgWidth: 300, imgHeight: 300)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(movie.title)
+                        .font(.title3)
+                        .fontWeight(.heavy)
+
+                    HStack(alignment: .center, spacing: 4) {
+
+                        Text(movie.reviewCount)
+                            .font(.callout)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+                            .padding(.trailing, 8)
+                            .foregroundColor(.green)
+                    }
+
+                    Text(movie.subTitle)
+                        .font(.subheadline)
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                         .padding(.trailing, 8)
-                        .foregroundColor(.green)
-                }
-                
-                Text(movie.subTitle)
-                    .font(.subheadline)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(2)
-                    .padding(.trailing, 8)
-                
-                HStack(alignment: .center, spacing: 4) {
-                    
-                    Text(movie.releaseDate)
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(2)
-                        .padding(.trailing, 8)
-                } //: Hstack
+
+                    HStack(alignment: .center, spacing: 4) {
+
+                        Text(movie.releaseDate)
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+                            .padding(.trailing, 8)
+                    } //: Hstack
+                } //: Vstack
             } //: Vstack
-        } //: Vstack
     }
 }
 

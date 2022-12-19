@@ -14,27 +14,24 @@ struct MoviesListView: View {
     
     var body: some View {
         // MARK: - BODY
-        NavigationView {
+        NavigationStack {
+
             List {
                 if movies != nil {
-
-
                     ForEach(movies!) { movie in
 
+                        MovieListItemView(movie: movie)
+
                         let id = String(movie.id ?? 0)
-
-                        NavigationLink(
-
-                            
-                            destination: MovieDetailView(id: id)
-                        ){
-
-                            MovieListItemView(movie: movie)
+                        NavigationLink(destination: MovieDetailView(id: id))
+                        {
+                            Image(systemName: "info.bubble.fill")
+                            Text("Get More Detail")
                         }
                     }
                 }
             }
-            .navigationBarTitle("Movie List", displayMode: .large)
+            .navigationTitle("Movie List")
         }.onAppear(perform: loadData) //: Navigation
     }
     private func loadData() {
