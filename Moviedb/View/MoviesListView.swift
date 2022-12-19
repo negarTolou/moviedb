@@ -17,13 +17,23 @@ struct MoviesListView: View {
         NavigationView {
             List {
                 if movies != nil {
+
+
                     ForEach(movies!) { movie in
-                        //                    NavigationLink(destination: MovieDetailView(movie: movie)){
-                        MovieListItemView(movie: movie)
-                        //                    } //: NavigationLink
-                    } //: loop
+
+                        let id = String(movie.id ?? 0)
+
+                        NavigationLink(
+
+                            
+                            destination: MovieDetailView(id: id)
+                        ){
+
+                            MovieListItemView(movie: movie)
+                        }
+                    }
                 }
-            } //: List
+            }
             .navigationBarTitle("Movie List", displayMode: .large)
         }.onAppear(perform: loadData) //: Navigation
     }
