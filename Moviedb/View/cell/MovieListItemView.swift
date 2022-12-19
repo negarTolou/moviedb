@@ -14,7 +14,7 @@ struct MovieListItemView: View {
         
         VStack(alignment: .center, spacing: 16) {
             
-            UrlImageView(urlString: movie.urlImage)
+            UrlImageView(urlString: movie.urlImage, imgWidth: 300, imgHeight: 300)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(movie.title)
@@ -63,3 +63,4 @@ struct MovieListItemView_Previews: PreviewProvider {
             .padding()
     }
 }
+
