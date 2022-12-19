@@ -23,8 +23,19 @@ struct MovieListService {
         }
         throw ServiceError.invalideResponse
     }
+    
+    func getMovieDetail(api: MovieDetailAPI) async throws -> MovieDetailModel {
+        let response = try await session.request(builder: URLBuilder(api: api))
+        
+        if let httpResponse = response.1 as? HTTPURLResponse, api.acceptableStatusCodes.contains(httpResponse.statusCode) {
+            return try parser.parse(data: response.0)
+        }
+        throw ServiceError.invalideResponse
+    }
+    
 }
 
 protocol Sessionable {
     func request(builder: URLBuilder) async throws -> (Data, URLResponse)
 }
+
