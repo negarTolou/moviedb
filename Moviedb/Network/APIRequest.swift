@@ -13,6 +13,7 @@ protocol API {
     var method: URLRequestMethod { get }
     var queries: [String: String] { get }
     var acceptableStatusCodes: ClosedRange<Int> { get }
+    var id: String? {set get}
 }
 
 extension API {
