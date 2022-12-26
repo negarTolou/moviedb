@@ -7,7 +7,8 @@
 
 import Foundation
 
-@MainActor class MovieDetailViewModel: ObservableObject, Identifiable {
+@MainActor
+final class MovieDetailViewModel: ObservableObject, Identifiable {
     
     private let service: MovieListService?
     @Published var movie: MovieDetailModel?
@@ -29,7 +30,7 @@ import Foundation
             let result = try? await service?.getMovieDetail(api: MovieDetailAPI(id: id))
             if let data = result {
                 self.movie = data
-                setData(movie: self.movie!)
+                setData(movie: data)
                 return self.movie
             }
         } catch let error {

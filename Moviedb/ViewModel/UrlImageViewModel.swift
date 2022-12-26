@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-@MainActor class UrlImageViewModel: ObservableObject {
+@MainActor
+final class UrlImageViewModel: ObservableObject {
     
     private var urlString: String?
     private var imageCache: ImageCache? = ImageCache()
